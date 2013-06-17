@@ -17,12 +17,14 @@ require.config({
         'jquery':{
             exports:'jQuery'
         }
+
     }
 
 });
 
 
 require(['backbone', 'underscore', 'jquery', 'root-view'], function(Backbone, _, $, RootView) {
-    var rootView = new RootView().render(null, $('#app_view')); 
-    rootView.postRender();
+    var rootView = new RootView().render(); 
+    $('#app_view').append(rootView.$el);
+    $(document).trigger('some_event');
 });

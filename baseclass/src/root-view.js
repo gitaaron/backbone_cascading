@@ -1,13 +1,18 @@
-define(['backbone', 'first-child-view'], function(Backbone, FirstChildView) {
+define(['base-view', 'first-child-view'], function(BaseView, FirstChildView) {
     var firstChildView;
-    var RootView = Backbone.View.extend({
+    var RootView = BaseView.extend({
         initialize:function() {
             firstChildView = new FirstChildView();
         },
-        render:function() {
+        doRender:function() {
             this.$el.html('<div id="root">root<div id="first-child"></div></div>');
-            this.$('#first-child').append(firstChildView.render().$el);
+            firstChildView.render(this, this.$el);
             return this;
+        },
+        postRender:function() {
+            this.children.forEach(function(k){
+                k.postRender()
+            })
         }
     });
     return RootView; 

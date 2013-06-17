@@ -1,21 +1,17 @@
-define(['backbone', 'second-child-view', 'jquery.livequery'], function(Backbone, SecondChildView) {
+define(['base-view', 'second-child-view', 'third-child-view'], function(BaseView, SecondChildView, ThirdChildView) {
 
     var secondChildView;   
 
-    var FirstChildView = Backbone.View.extend({
-
+    var FirstChildView = BaseView.extend({
         initialize:function() {
             console.log('init first child view');
             secondChildView = new SecondChildView();
+            thirdChildView = new ThirdChildView();
         },
-        render:function() {
-
-            this.$el.html('first-child<div id="second-child" data="I am the second descendant in a long family line"></div>');
-            $('#second-child').livequery(function() {
-                console.log('livequery second child : ' + $('#second-child').attr('data'));
-            });
-            this.$('#second-child').append(secondChildView.render().$el);
-            console.log('after append second child : ' + $('#second-child').attr('data'));
+        doRender:function() {
+            this.$el.html('first-child<div id="second-child"></div><div id="other-second-child"></div>');
+            secondChildView.render(this, this.$('#second-child'));
+            thirdChildView.render(this, this.$('#other-second-child'));
 
             return this;
         }

@@ -1,8 +1,8 @@
-define(['backbone', 'jquery.livequery'], function(Bacbone) {
+define(['backbone'], function(Bacbone) {
     var SecondChildView = Backbone.View.extend({
         render:function() {
-            $('#second-child').livequery(function() {
-                console.log('livequery second child : ' + $('#second-child-data').attr('data'));
+            $(document).bind('some_event', function() {
+                console.log('some global event second child : ' + $('#second-child-data').attr('data'));
             });
 
             this.$el.html('<div id="second-child-data" data="I am the second descendant in a long family line">second-child</div>');
