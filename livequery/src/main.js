@@ -1,10 +1,10 @@
 require.config({
     paths:{
-        'backbone':'../lib/backbone',
-        'underscore':'../lib/underscore',
-        'underscore.string':'../lib/underscore.string.min',
-        'jquery':'../lib/jquery',
-        'jquery.livequery':'../lib/jquery.livequery'
+        'backbone':'../../lib/backbone',
+        'underscore':'../../lib/underscore',
+        'underscore.string':'../../lib/underscore.string.min',
+        'jquery':'../../lib/jquery',
+        'jquery.livequery':'../../lib/jquery.livequery'
     },
     shim: {
         'underscore':{
